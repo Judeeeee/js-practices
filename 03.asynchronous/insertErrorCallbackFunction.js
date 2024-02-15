@@ -20,26 +20,27 @@ const createTable = (db, func) => {
 };
 
 const insertTable = (db, func) => {
-  try {
-    const sql = "INSERT INTO books(title) VALUES(?)";
-    const bookTitle = null;
-    db.run(sql, bookTitle, function () {
+  const sql = "INSERT INTO books(title) VALUES(NULL)";
+  db.run(sql, function (err) {
+    if (err) {
+      console.error(err);
+    } else {
       console.log(`自動採択されたID ${this.lastID}`);
       func();
-    });
-  } catch (error) {
-    console.error(error);
-  }
+    }
+  });
 };
 
 const outputRecord = (db, func) => {
-  const sql = "SELECT undefined FROM books";
-  db.each(sql, function (error, row) {
-    try {
-      console.log(`${row.id} ${row.title}`);
+  const sql = "SELECT * FROM books";
+  db.all(sql, function (err, rows) {
+    if (err) {
+      console.error(err);
+    } else {
+      for (const row of rows) {
+        console.log(`${row.id} ${row.title}`);
+      }
       func();
-    } catch (error) {
-      console.error(error);
     }
   });
 };

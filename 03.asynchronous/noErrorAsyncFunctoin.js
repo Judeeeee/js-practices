@@ -1,15 +1,19 @@
 import Table from "./commonQuery.js";
-import sqlite3 from "sqlite3";
-const db = new sqlite3.Database(":test:");
 
-const bookTitle = "bookTitleTest";
-const selectQuery = "SELECT * FROM books";
+const noErrorAsyncFunction = async function () {
+  const createTableQuery =
+    "CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
+  const insertTableQuery = "INSERT INTO books(title) VALUES('OK')";
+  const getRecordsQuery = "SELECT * FROM books";
+  const dropTableQuery = "DROP TABLE books";
 
-const noErrorAsyncFunction = async function (db) {
-  await Table.create(db);
-  await Table.insert(db, bookTitle);
-  await Table.outputRecord(db, selectQuery);
-  await Table.drop(db);
+  const db = new Table();
+  await db.run(createTableQuery);
+  const { lastID } = await db.run(insertTableQuery);
+  console.log(`自動採択されたID ${lastID}`);
+  const rows = await db.all(getRecordsQuery);
+  await db.display(rows);
+  await db.run(dropTableQuery);
 };
 
-noErrorAsyncFunction(db);
+noErrorAsyncFunction();

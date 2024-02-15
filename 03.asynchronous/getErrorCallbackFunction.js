@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 const db = new sqlite3.Database(":test:");
 
-const noErrorCallbackFunction = (db) => {
+const ErrorCallbackFunction = (db) => {
   createTable(db, () => {
     insertTable(db, () => {
       outputRecord(db, () => {
@@ -32,7 +32,7 @@ const insertTable = (db, func) => {
 };
 
 const outputRecord = (db, func) => {
-  const sql = "SELECT * FROM books";
+  const sql = "SELECT undefined FROM books";
   db.all(sql, function (err, rows) {
     if (err) {
       console.error(err);
@@ -50,4 +50,4 @@ const dropTable = (db) => {
   db.run(sql);
 };
 
-noErrorCallbackFunction(db);
+ErrorCallbackFunction(db);

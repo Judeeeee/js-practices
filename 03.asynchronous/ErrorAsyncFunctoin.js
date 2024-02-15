@@ -1,23 +1,27 @@
 import Table from "./commonQuery.js";
-import sqlite3 from "sqlite3";
-const db = new sqlite3.Database(":test:");
 
-const bookTitle = null;
-const selectQuery = "SELECT undefined FROM books";
+const ErrorAsyncFunction = async function () {
+  const createTableQuery =
+    "CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
+  const errorInsertTableQuery = "INSERT INTO books(title) VALUES(NULL)";
+  const errorGetRecordsQuery = "SELECT undefined FROM books";
+  const dropTableQuery = "DROP TABLE books";
 
-const ErrorAsyncFunction = async function (db) {
-  await Table.create(db);
+  const db = new Table();
+  await db.run(createTableQuery);
   try {
-    await Table.insert(db, bookTitle);
+    const { lastID } = await db.run(errorInsertTableQuery);
+    console.log(`自動採択されたID ${lastID}`);
   } catch (err) {
     console.error(err);
   }
   try {
-    await Table.outputRecord(db, selectQuery);
+    const rows = await db.all(errorGetRecordsQuery);
+    await db.display(rows);
   } catch (err) {
     console.error(err);
   }
-  await Table.drop(db);
+  await db.run(dropTableQuery);
 };
 
-ErrorAsyncFunction(db);
+ErrorAsyncFunction();

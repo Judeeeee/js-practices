@@ -1,43 +1,44 @@
+import sqlite3 from "sqlite3";
+
 class Table {
-  static create = (db) => {
-    return new Promise((resolve) => {
-      const sql =
-        "CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
-      db.run(sql, function () {
-        resolve();
-      });
-    });
-  };
+  constructor() {
+    this.db = new sqlite3.Database(":test:");
+  }
 
-  static drop = (db) => {
-    const sql = "DROP TABLE books";
-    db.run(sql);
-  };
-
-  static insert = (db, param) => {
+  run = (sql) => {
     return new Promise((resolve, reject) => {
-      const sql = "INSERT INTO books(title) VALUES(?)";
-      db.run(sql, param, function (arg) {
-        if (arg == null) {
-          console.log(`自動採択されたID ${this.lastID}`);
-          return resolve();
+      this.db.run(sql, function (err) {
+        if (err) {
+          reject(err);
         } else {
-          return reject(arg);
+          resolve({ lastID: this.lastID });
         }
       });
     });
   };
 
-  static outputRecord = (db, sql) => {
+  all = (sql) => {
     return new Promise((resolve, reject) => {
-      db.each(sql, function (err, row) {
-        if (row != undefined) {
+      this.db.all(sql, function (err, rows) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  };
+
+  display = (rows) => {
+    return new Promise((resolve, reject) => {
+      if (rows == undefined) {
+        reject();
+      } else {
+        for (const row of rows) {
           console.log(`${row.id} ${row.title}`);
-          return resolve();
-        } else {
-          return reject(err);
         }
-      });
+        resolve();
+      }
     });
   };
 }
