@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 
 class Table {
   constructor() {
-    this.db = new sqlite3.Database(":test:");
+    this.db = new sqlite3.Database(":memory:");
   }
 
   run = (sql) => {

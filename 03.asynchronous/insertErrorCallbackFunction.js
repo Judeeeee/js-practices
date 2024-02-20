@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-const db = new sqlite3.Database(":test:");
+const db = new sqlite3.Database(":memory:");
 
 const ErrorCallbackFunction = (db) => {
   createTable(db, () => {
