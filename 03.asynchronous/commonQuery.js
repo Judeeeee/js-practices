@@ -35,4 +35,4 @@ const display = (rows) => {
   });
 };
 
-export {run, all, display};
+export { run, all, display };
