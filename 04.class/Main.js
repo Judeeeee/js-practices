@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import MemoApp from "./MemoApp.js";
 import Memo from "./Memo.js";
 import Record from "./Record.js";
