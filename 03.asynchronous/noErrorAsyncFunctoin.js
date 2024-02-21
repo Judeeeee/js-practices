@@ -1,4 +1,6 @@
-import Table from "./commonQuery.js";
+import {run, all, display} from "./commonQuery.js";
+import sqlite3 from "sqlite3";
+const db = new sqlite3.Database(":memory:");
 
 const noErrorAsyncFunction = async function () {
   const createTableQuery =
@@ -7,13 +9,12 @@ const noErrorAsyncFunction = async function () {
   const getRecordsQuery = "SELECT * FROM books";
   const dropTableQuery = "DROP TABLE books";
 
-  const db = new Table();
-  await db.run(createTableQuery);
-  const { lastID } = await db.run(insertTableQuery);
+  await run(db, createTableQuery);
+  const { lastID } = await run(db, insertTableQuery);
   console.log(`自動採択されたID ${lastID}`);
-  const rows = await db.all(getRecordsQuery);
-  await db.display(rows);
-  await db.run(dropTableQuery);
+  const rows = await all(db, getRecordsQuery);
+  await display(rows);
+  await run(db, dropTableQuery);
 };
 
 noErrorAsyncFunction();
