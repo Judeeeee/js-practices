@@ -7,12 +7,13 @@ const errorCallbackFunction = () => {
   db.run("CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)", () => {
     db.run("INSERT INTO books(title) VALUES(NULL)", function (err) {
       if (err) {
-        console.error(err);
+        console.log(err.message);
       } else {
         console.log(`自動採番されたID ${this.lastID}`);
+      }
         db.all("SELECT undefined FROM books", (err, rows) => {
           if (err) {
-            console.error(err);
+            console.log(err.message);
           } else {
             for (const row of rows) {
               console.log(`${row.id} ${row.title}`);
@@ -20,7 +21,6 @@ const errorCallbackFunction = () => {
             db.run("DROP TABLE books");
           }
         });
-      }
     });
   });
 };

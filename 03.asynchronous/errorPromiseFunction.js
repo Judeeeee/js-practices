@@ -12,7 +12,9 @@ const dropTableQuery = "DROP TABLE books";
 run(db, createTableQuery)
   .then(() => run(db, errorInsertTableQuery))
   .then(({ lastID }) => console.log(`自動採番されたID ${lastID}`))
+  .catch((err) => { console.log(err.message);})
   .then(() => all(db, errorGetRecordsQuery))
   .then((rows) => display(rows))
+  .catch((error) => {console.log(error.message);})
   .then(() => run(db, dropTableQuery))
-  .catch((e) => console.error(e));
+  .catch((err) => { console.log(err.message);})
