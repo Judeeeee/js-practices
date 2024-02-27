@@ -1,8 +1,9 @@
 import sqlite3 from "sqlite3";
 
-const db = new sqlite3.Database(":memory:");
 
-const ErrorCallbackFunction = (db) => {
+
+const ErrorCallbackFunction = () => {
+  const db = new sqlite3.Database(":memory:");
   const createTableQuery =
     "CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
   db.run(createTableQuery, () => {
@@ -29,4 +30,4 @@ const ErrorCallbackFunction = (db) => {
   });
 };
 
-ErrorCallbackFunction(db);
+ErrorCallbackFunction();

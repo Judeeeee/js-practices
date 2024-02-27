@@ -1,9 +1,8 @@
 import { run, all, display } from "./commonQuery.js";
 import sqlite3 from "sqlite3";
 
-const db = new sqlite3.Database(":memory:");
-
 const ErrorAsyncFunction = async function () {
+  const db = new sqlite3.Database(":memory:");
   const createTableQuery =
     "CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
   const errorInsertTableQuery = "INSERT INTO books(title) VALUES(NULL)";
