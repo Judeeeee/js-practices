@@ -14,13 +14,13 @@ const errorAsyncFunction = async function () {
     const { lastID } = await run(db, errorInsertTableQuery);
     console.log(`自動採番されたID ${lastID}`);
   } catch (err) {
-    console.error(err);
+    console.log(err.message);
   }
   try {
     const rows = await all(db, errorGetRecordsQuery);
     await display(rows);
   } catch (err) {
-    console.error(err);
+    console.log(err.message);
   }
   await run(db, dropTableQuery);
 };
