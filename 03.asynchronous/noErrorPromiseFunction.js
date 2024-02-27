@@ -15,4 +15,3 @@ run(db, createTableQuery)
   .then(() => all(db, getRecordsQuery))
   .then((rows) => display(rows))
   .then(() => run(db, dropTableQuery))
-  .catch((e) => console.error(e));
