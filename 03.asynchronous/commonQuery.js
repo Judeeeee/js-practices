@@ -12,7 +12,7 @@ const run = (db, sql) => {
 
 const all = (db, sql) => {
   return new Promise((resolve, reject) => {
-    db.all(sql, function (err, rows) {
+    db.all(sql, (err, rows) => {
       if (err) {
         reject(err);
       } else {

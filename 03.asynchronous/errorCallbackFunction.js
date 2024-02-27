@@ -10,7 +10,7 @@ const ErrorCallbackFunction = () => {
         console.error(err);
       } else {
         console.log(`自動採番されたID ${this.lastID}`);
-        db.all("SELECT undefined FROM books", function (err, rows) {
+        db.all("SELECT undefined FROM books", (err, rows) => {
           if (err) {
             console.error(err);
           } else {
