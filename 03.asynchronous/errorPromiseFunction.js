@@ -8,6 +8,7 @@ const createTableQuery =
 const errorInsertTableQuery = "INSERT INTO books(title) VALUES(NULL)";
 const errorGetRecordsQuery = "SELECT undefined FROM books";
 const dropTableQuery = "DROP TABLE books";
+
 const display = (rows) => {
   for (const row of rows) {
     console.log(`${row.id} ${row.title}`);
@@ -16,10 +17,11 @@ const display = (rows) => {
 
 run(db, createTableQuery)
   .then(() => run(db, errorInsertTableQuery))
-  .then(({ lastID }) => console.log(`自動採番されたID ${lastID}`))
-  .catch((err) => { console.log(err.message);})
-  .then(() => all(db, errorGetRecordsQuery))
+  .catch((err) => { console.log(err.message); })
+  .then(({ lastID }) => {
+    console.log(`自動採番されたID ${lastID}`)
+    return all(db, errorGetRecordsQuery)
+  })
   .then((rows) => display(rows))
-  .catch((error) => {console.log(error.message);})
+  .catch((err) => { console.log(err.message); })
   .then(() => run(db, dropTableQuery))
-  .catch((err) => { console.log(err.message);})
