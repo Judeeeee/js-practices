@@ -1,4 +1,4 @@
-import { run, all, display } from "./commonQuery.js";
+import { run, all } from "./commonQuery.js";
 import sqlite3 from "sqlite3";
 
 const errorAsyncFunction = async function () {
@@ -8,6 +8,11 @@ const errorAsyncFunction = async function () {
   const errorInsertTableQuery = "INSERT INTO books(title) VALUES(NULL)";
   const errorGetRecordsQuery = "SELECT undefined FROM books";
   const dropTableQuery = "DROP TABLE books";
+  const display = (rows) => {
+    for (const row of rows) {
+      console.log(`${row.id} ${row.title}`);
+    }
+  };
 
   await run(db, createTableQuery);
   try {

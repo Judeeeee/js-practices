@@ -1,4 +1,4 @@
-import { run, all, display } from "./commonQuery.js";
+import { run, all } from "./commonQuery.js";
 import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory:");
@@ -8,6 +8,11 @@ const createTableQuery =
 const errorInsertTableQuery = "INSERT INTO books(title) VALUES(NULL)";
 const errorGetRecordsQuery = "SELECT undefined FROM books";
 const dropTableQuery = "DROP TABLE books";
+const display = (rows) => {
+  for (const row of rows) {
+    console.log(`${row.id} ${row.title}`);
+  }
+};
 
 run(db, createTableQuery)
   .then(() => run(db, errorInsertTableQuery))

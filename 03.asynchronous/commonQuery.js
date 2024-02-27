@@ -22,17 +22,4 @@ const all = (db, sql) => {
   });
 };
 
-const display = (rows) => {
-  return new Promise((resolve, reject) => {
-    if (rows == undefined) {
-      reject();
-    } else {
-      for (const row of rows) {
-        console.log(`${row.id} ${row.title}`);
-      }
-      resolve();
-    }
-  });
-};
-
-export { run, all, display };
+export { run, all };
