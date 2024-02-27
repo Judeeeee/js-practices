@@ -11,7 +11,7 @@ const dropTableQuery = "DROP TABLE books";
 
 run(db, createTableQuery)
   .then(() => run(db, errorInsertTableQuery))
-  .then(({ lastID }) => console.log(`自動採択されたID ${lastID}`))
+  .then(({ lastID }) => console.log(`自動採番されたID ${lastID}`))
   .then(() => all(db, errorGetRecordsQuery))
   .then((rows) => display(rows))
   .then(() => run(db, dropTableQuery))

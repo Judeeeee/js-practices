@@ -12,7 +12,7 @@ const ErrorAsyncFunction = async function () {
   await run(db, createTableQuery);
   try {
     const { lastID } = await run(db, errorInsertTableQuery);
-    console.log(`自動採択されたID ${lastID}`);
+    console.log(`自動採番されたID ${lastID}`);
   } catch (err) {
     console.error(err);
   }

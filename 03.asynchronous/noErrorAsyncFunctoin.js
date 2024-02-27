@@ -11,7 +11,7 @@ const noErrorAsyncFunction = async function () {
 
   await run(db, createTableQuery);
   const { lastID } = await run(db, insertTableQuery);
-  console.log(`自動採択されたID ${lastID}`);
+  console.log(`自動採番されたID ${lastID}`);
   const rows = await all(db, getRecordsQuery);
   await display(rows);
   await run(db, dropTableQuery);
