@@ -18,12 +18,18 @@ try {
   const { lastID } = await run(db, errorInsertTableQuery);
   console.log(`自動採番されたID ${lastID}`);
 } catch (err) {
-  console.log(err.message);
+  if (err instanceof Object) {
+    console.log(err.message);
+  } else {
+    throw err;
+  }
 }
 try {
   const rows = await all(db, errorGetRecordsQuery);
   await display(rows);
 } catch (err) {
-  console.log(err.message);
+  if (err instanceof Object) {
+    console.log(err.message);
+  }
 }
 await run(db, dropTableQuery);
