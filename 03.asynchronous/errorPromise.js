@@ -19,26 +19,26 @@ run(db, createTableQuery)
   .then(() => run(db, errorInsertTableQuery))
   .then(
     (lastID) => {
-      console.log(`自動採番されたID ${lastID}`)
+      console.log(`自動採番されたID ${lastID}`);
     },
     (err) => {
       console.log(err.message);
-    }
+    },
   )
   .then(
     () => {
-      return all(db, errorGetRecordsQuery)
+      return all(db, errorGetRecordsQuery);
     },
     (err) => {
       return err;
-    }
+    },
   )
   .then(
     (rows) => {
-      display(rows)
+      display(rows);
     },
     (err) => {
       console.log(err.message);
-    }
+    },
   )
-  .then(() => run(db, dropTableQuery))
+  .then(() => run(db, dropTableQuery));

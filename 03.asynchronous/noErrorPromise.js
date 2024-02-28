@@ -17,8 +17,8 @@ const display = (rows) => {
 run(db, createTableQuery)
   .then(() => run(db, insertTableQuery))
   .then(({ lastID }) => {
-      console.log(`自動採番されたID ${lastID}`)
-      return all(db, getRecordsQuery)
+    console.log(`自動採番されたID ${lastID}`);
+    return all(db, getRecordsQuery);
   })
   .then((rows) => display(rows))
-  .then(() => run(db, dropTableQuery))
+  .then(() => run(db, dropTableQuery));
