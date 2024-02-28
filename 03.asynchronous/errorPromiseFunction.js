@@ -17,11 +17,28 @@ const display = (rows) => {
 
 run(db, createTableQuery)
   .then(() => run(db, errorInsertTableQuery))
-  .catch((err) => { console.log(err.message); })
-  .then(({ lastID }) => {
-    console.log(`自動採番されたID ${lastID}`)
-    return all(db, errorGetRecordsQuery)
-  })
-  .then((rows) => display(rows))
-  .catch((err) => { console.log(err.message); })
+  .then(
+    (lastID) => {
+      console.log(`自動採番されたID ${lastID}`)
+    },
+    (err) => {
+      console.log(err.message);
+    }
+  )
+  .then(
+    () => {
+      return all(db, errorGetRecordsQuery)
+    },
+    (err) => {
+      return err;
+    }
+  )
+  .then(
+    (rows) => {
+      display(rows)
+    },
+    (err) => {
+      console.log(err.message);
+    }
+  )
   .then(() => run(db, dropTableQuery))
