@@ -2,21 +2,14 @@ import { run, all } from "./databaseFunctions.js";
 import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory:");
-
-const createTableQuery =
-  "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
-const errorInsertTableQuery = "INSERT INTO books(title) VALUES(NULL)";
-const errorGetRecordsQuery = "SELECT undefined FROM books";
-const dropTableQuery = "DROP TABLE books";
-
 const display = (rows) => {
   for (const row of rows) {
     console.log(`${row.id} ${row.title}`);
   }
 };
 
-run(db, createTableQuery)
-  .then(() => run(db, errorInsertTableQuery))
+run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)")
+  .then(() => run(db, "INSERT INTO books(title) VALUES(NULL)"))
   .then(
     (lastID) => {
       console.log(`自動採番されたID ${lastID}`);
@@ -27,7 +20,7 @@ run(db, createTableQuery)
   )
   .then(
     () => {
-      return all(db, errorGetRecordsQuery);
+      return all(db, "SELECT undefined FROM books");
     },
     (err) => {
       return err;
@@ -41,4 +34,4 @@ run(db, createTableQuery)
       console.log(err.message);
     },
   )
-  .then(() => run(db, dropTableQuery));
+  .then(() => run(db, "DROP TABLE books"));

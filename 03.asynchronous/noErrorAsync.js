@@ -2,20 +2,15 @@ import { run, all } from "./databaseFunctions.js";
 import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory:");
-const createTableQuery =
-  "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)";
-const insertTableQuery = "INSERT INTO books(title) VALUES('吾輩は猫である')";
-const getRecordsQuery = "SELECT * FROM books";
-const dropTableQuery = "DROP TABLE books";
 const display = (rows) => {
   for (const row of rows) {
     console.log(`${row.id} ${row.title}`);
   }
 };
 
-await run(db, createTableQuery);
-const { lastID } = await run(db, insertTableQuery);
+await run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)");
+const { lastID } = await run(db, "INSERT INTO books(title) VALUES('吾輩は猫である')");
 console.log(`自動採番されたID ${lastID}`);
-const rows = await all(db, getRecordsQuery);
+const rows = await all(db, "SELECT * FROM books");
 await display(rows);
-await run(db, dropTableQuery);
+await run(db, "DROP TABLE books");
