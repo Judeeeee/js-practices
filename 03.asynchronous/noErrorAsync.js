@@ -12,5 +12,5 @@ await run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TE
 const { lastID } = await run(db, "INSERT INTO books(title) VALUES('吾輩は猫である')");
 console.log(`自動採番されたID ${lastID}`);
 const rows = await all(db, "SELECT * FROM books");
-await display(rows);
+display(rows);
 await run(db, "DROP TABLE books");
