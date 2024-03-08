@@ -17,8 +17,8 @@ db.run(
           for (const row of rows) {
             console.log(`${row.id} ${row.title}`);
           }
-          db.run("DROP TABLE books");
         }
+        db.run("DROP TABLE books");
       });
     });
   },
