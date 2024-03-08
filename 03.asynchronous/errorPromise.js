@@ -2,11 +2,6 @@ import { run, all } from "./databaseFunctions.js";
 import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory:");
-const display = (rows) => {
-  for (const row of rows) {
-    console.log(`${row.id} ${row.title}`);
-  }
-};
 
 run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)")
   .then(() => run(db, "INSERT INTO books(title) VALUES(NULL)"))
@@ -28,7 +23,9 @@ run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT
   )
   .then(
     (rows) => {
-      display(rows);
+      for (const row of rows) {
+        console.log(`${row.id} ${row.title}`);
+      }
     },
     (err) => {
       console.log(err.message);
