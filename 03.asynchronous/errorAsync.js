@@ -8,7 +8,7 @@ try {
   const { lastID } = await run(db, "INSERT INTO books(title) VALUES(NULL)");
   console.log(`自動採番されたID ${lastID}`);
 } catch (err) {
-  if (err instanceof Object) {
+  if (err.code === 'SQLITE_CONSTRAINT') {
     console.log(err.message);
   } else {
     throw err;
@@ -20,7 +20,7 @@ try {
     console.log(`${row.id} ${row.title}`);
   }
 } catch (err) {
-  if (err instanceof Object) {
+  if (err.code === 'SQLITE_ERROR') {
     console.log(err.message);
   }
 }
