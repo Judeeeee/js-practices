@@ -7,7 +7,7 @@ run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT
   .then(() => run(db, "INSERT INTO books(title) VALUES(NULL)"))
   .then((lastID) => { console.log(`自動採番されたID ${lastID}`);})
   .catch((err) => {console.log(err.message);})
-  .then(() => { return all(db, "SELECT undefined FROM books");})
+  .then(() => all(db, "SELECT undefined FROM books") )
   .then(
     (rows) => {
       for (const row of rows) {
