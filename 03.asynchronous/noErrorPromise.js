@@ -13,5 +13,5 @@ run(db, "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT
       for (const row of rows) {
         console.log(`${row.id} ${row.title}`);
       }
+      run(db, "DROP TABLE books");
   })
-  .then(() => run(db, "DROP TABLE books"));
