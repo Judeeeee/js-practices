@@ -4,7 +4,7 @@ const run = (db, sql) => {
       if (err) {
         reject(err);
       } else {
-        resolve({ lastID: this.lastID, changes: this.changes });
+        resolve(this);
       }
     });
   });
