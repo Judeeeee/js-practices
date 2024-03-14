@@ -8,7 +8,7 @@ run(
   "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
 )
   .then(() => run(db, "INSERT INTO books(title) VALUES(NULL)"))
-  .then((lastID) => {
+  .then(({ lastID }) => {
     console.log(`自動採番されたID ${lastID}`);
   })
   .catch((err) => {
