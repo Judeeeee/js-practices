@@ -25,6 +25,8 @@ try {
 } catch (err) {
   if (err.message.includes("SQLITE_ERROR")) {
     console.log(err.message);
+  } else {
+    throw err;
   }
 }
 await run(db, "DROP TABLE books");
