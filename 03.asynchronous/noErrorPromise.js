@@ -16,5 +16,5 @@ run(
     for (const row of rows) {
       console.log(`${row.id} ${row.title}`);
     }
-    run(db, "DROP TABLE books");
+    return run(db, "DROP TABLE books");
   });
