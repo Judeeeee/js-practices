@@ -20,7 +20,7 @@ class Record {
 
   static async select(db) {
     return new Promise((resolve, reject) => {
-      const sql = "SELECT * FROM memos";
+      const sql = "SELECT * FROM memos ORDER BY id ASC";
       db.all(sql, function (err, rows) {
         if (err) {
           reject(err);
