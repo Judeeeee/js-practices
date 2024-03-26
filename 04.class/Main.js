@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 
-import sqlite3 from "sqlite3";
 import MemoApp from "./MemoApp.js";
 import Memo from "./Memo.js";
 import Record from "./Record.js";
 
-const db = new sqlite3.Database("./memo.db");
-
 const main = async function () {
-  await Record.createTable(db);
-  const convertedRecords = await Record.all(db);
+  await Record.createTable();
+  const convertedRecords = await Record.all();
   const memos = convertedRecords.map(
     (convertedRecord) => new Memo(convertedRecord),
   );
@@ -30,14 +27,14 @@ const main = async function () {
       case "-d": {
         let chosenMemo = await memoapp.choose();
         const memoId = chosenMemo.memoId;
-        Record.delete(db, memoId);
+        Record.delete(memoId);
         break;
       }
     }
   } else {
     process.stdin.on("data", (data) => {
       const text = data.toString().trim();
-      Record.insert(db, text);
+      Record.insert(text);
     });
   }
 };
