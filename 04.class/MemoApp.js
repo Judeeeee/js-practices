@@ -14,12 +14,12 @@ class MemoApp {
 
   async choise() {
     const memoList = MemoApp.memoList(this.memos);
-    const choicedRecord = await prompt(memoList);
-    const choicedMemo = this.memos.find(
-      (memo) => memo.name === choicedRecord.firstLine,
+    const chosenRecord = await prompt(memoList);
+    const chosenMemo = this.memos.find(
+      (memo) => memo.name === chosenRecord.firstLine,
     );
 
-    return choicedMemo;
+    return chosenMemo;
   }
 
   static memoList(memos) {
