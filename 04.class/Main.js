@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
+import sqlite3 from "sqlite3";
 import MemoApp from "./MemoApp.js";
 import Memo from "./Memo.js";
 import Record from "./Record.js";
-import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database("./memo.db");
 
