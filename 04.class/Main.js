@@ -17,9 +17,7 @@ const main = async function () {
   const args = process.argv.slice(2);
 
   if (args.length > 0) {
-    const arg = args[0];
-
-    switch (arg) {
+    switch (args[0]) {
       case "-l": {
         memoapp.firstLines();
         break;
