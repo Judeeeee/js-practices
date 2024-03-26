@@ -1,4 +1,4 @@
-class Memo {
+export default class Memo {
   constructor(convertedRecord) {
     this.memoId = convertedRecord.memoId;
     this.name = convertedRecord.name;
@@ -13,5 +13,3 @@ class Memo {
     return this.value;
   }
 }
-
-export default Memo;

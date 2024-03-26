@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
 
-class Record {
+export default class Record {
   static db = new sqlite3.Database("./memo.db");
   constructor(id, text) {
     this.id = id;
@@ -53,5 +53,3 @@ class Record {
     return memo;
   }
 }
-
-export default Record;

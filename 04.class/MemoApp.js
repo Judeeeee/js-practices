@@ -1,7 +1,7 @@
 import pkg from "enquirer";
 const { prompt } = pkg;
 
-class MemoApp {
+export default class MemoApp {
   constructor(memos) {
     this.memos = memos;
   }
@@ -35,5 +35,3 @@ class MemoApp {
     return list;
   }
 }
-
-export default MemoApp;
