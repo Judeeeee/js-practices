@@ -34,15 +34,6 @@ class Record {
     });
   }
 
-  convert() {
-    const memo = {
-      memoId: this.id,
-      name: this.text.split("\n")[0],
-      value: this.text,
-    };
-    return memo;
-  }
-
   static async insert(text) {
     const sql = "INSERT INTO memos(text) VALUES(?)";
     Record.db.run(sql, `${text}`);
@@ -51,6 +42,15 @@ class Record {
   static async delete(memoId) {
     const sql = "DELETE FROM memos WHERE id = ?";
     Record.db.run(sql, `${memoId}`);
+  }
+
+  convert() {
+    const memo = {
+      memoId: this.id,
+      name: this.text.split("\n")[0],
+      value: this.text,
+    };
+    return memo;
   }
 }
 
