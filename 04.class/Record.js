@@ -36,12 +36,12 @@ export default class Record {
 
   static async insert(text) {
     const sql = "INSERT INTO memos(text) VALUES(?)";
-    Record.db.run(sql, `${text}`);
+    Record.db.run(sql, text);
   }
 
   static async delete(memoId) {
     const sql = "DELETE FROM memos WHERE id = ?";
-    Record.db.run(sql, `${memoId}`);
+    Record.db.run(sql, memoId);
   }
 
   convert() {
