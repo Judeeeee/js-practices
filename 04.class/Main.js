@@ -37,7 +37,7 @@ const Main = async function () {
       }
     }
   } else {
-    await process.stdin.on("data", (data) => {
+    process.stdin.on("data", (data) => {
       const text = data.toString().trim();
       Record.insert(db, text);
     });
