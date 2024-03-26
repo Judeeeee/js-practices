@@ -7,7 +7,7 @@ import Record from "./Record.js";
 
 const db = new sqlite3.Database("./memo.db");
 
-const Main = async function () {
+const main = async function () {
   await Record.createTable(db);
   const convertedRecords = await Record.all(db);
   const memos = convertedRecords.map(
@@ -44,4 +44,4 @@ const Main = async function () {
   }
 };
 
-Main();
+main();
