@@ -12,7 +12,7 @@ class MemoApp {
     }
   }
 
-  async choise() {
+  async choose() {
     const memoList = MemoApp.memoList(this.memos);
     const chosenRecord = await prompt(memoList);
     const chosenMemo = this.memos.find(

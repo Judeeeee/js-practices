@@ -23,12 +23,12 @@ const main = async function () {
         break;
       }
       case "-r": {
-        let chosenMemo = await memoapp.choise();
+        let chosenMemo = await memoapp.choose();
         console.log(chosenMemo.text());
         break;
       }
       case "-d": {
-        let chosenMemo = await memoapp.choise();
+        let chosenMemo = await memoapp.choose();
         const memoId = chosenMemo.memoId;
         Record.delete(db, memoId);
         break;
