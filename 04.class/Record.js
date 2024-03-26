@@ -1,21 +1,20 @@
 import sqlite3 from "sqlite3";
 
 class Record {
+  static db = new sqlite3.Database("./memo.db");
   constructor(id, text) {
     this.id = id;
     this.text = text;
   }
 
   static async createTable() {
-    const db = new sqlite3.Database("./memo.db");
     const sql =
-      "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL UNIQUE)";
-    db.run(sql);
+      "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL)";
+    Record.db.run(sql);
   }
 
   static async all() {
-    const db = new sqlite3.Database("./memo.db");
-    const records = await Record.select(db);
+    const records = await Record.select();
     const convertedRecords = records.map((record) =>
       new Record(record.id, record.text).convert(),
     );
@@ -24,9 +23,8 @@ class Record {
 
   static async select() {
     return new Promise((resolve, reject) => {
-      const db = new sqlite3.Database("./memo.db");
       const sql = "SELECT * FROM memos ORDER BY id ASC";
-      db.all(sql, function (err, rows) {
+      Record.db.all(sql, function (err, rows) {
         if (err) {
           reject(err);
         } else {
@@ -46,15 +44,13 @@ class Record {
   }
 
   static async insert(text) {
-    const db = new sqlite3.Database("./memo.db");
     const sql = "INSERT INTO memos(text) VALUES(?)";
-    db.run(sql, `${text}`);
+    Record.db.run(sql, `${text}`);
   }
 
   static async delete(memoId) {
-    const db = new sqlite3.Database("./memo.db");
     const sql = "DELETE FROM memos WHERE id = ?";
-    db.run(sql, `${memoId}`);
+    Record.db.run(sql, `${memoId}`);
   }
 }
 
