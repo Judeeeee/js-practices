@@ -28,8 +28,7 @@ class MemoApp {
         type: "select",
         name: "firstLine",
         value: "value",
-        message: "Choose a note you want to see:",
-        initial: 1,
+        message: "Choose a note you want to seae:",
         choices: memos,
       },
     ];
