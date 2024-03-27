@@ -7,7 +7,7 @@ export default class Record {
     this.text = text;
   }
 
-  static async createTable() {
+  static createTable() {
     const sql =
       "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL)";
     Record.db.run(sql);
@@ -21,7 +21,7 @@ export default class Record {
     return convertedRecords;
   }
 
-  static async select() {
+  static select() {
     return new Promise((resolve, reject) => {
       const sql = "SELECT * FROM memos ORDER BY id ASC";
       Record.db.all(sql, function (err, rows) {
@@ -34,12 +34,12 @@ export default class Record {
     });
   }
 
-  static async insert(text) {
+  static insert(text) {
     const sql = "INSERT INTO memos(text) VALUES(?)";
     Record.db.run(sql, text);
   }
 
-  static async delete(memoId) {
+  static delete(memoId) {
     const sql = "DELETE FROM memos WHERE id = ?";
     Record.db.run(sql, memoId);
   }
