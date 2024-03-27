@@ -28,7 +28,7 @@ export default class MemoApp {
         type: "select",
         name: "firstLine",
         value: "value",
-        message: "Choose a note you want to seae:",
+        message: "Choose a memo you want to seae:",
         choices: memos,
       },
     ];
