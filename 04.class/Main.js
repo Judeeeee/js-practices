@@ -5,11 +5,8 @@ import Memo from "./Memo.js";
 import Record from "./Record.js";
 
 const main = async function () {
-  await Record.createTable();
-  const convertedRecords = await Record.all();
-  const memos = convertedRecords.map(
-    (convertedRecord) => new Memo(convertedRecord),
-  );
+  const records = await Record.initialize();
+  const memos = records.map((record) => new Memo(record));
   const memoapp = new MemoApp(memos);
   const args = process.argv.slice(2);
 

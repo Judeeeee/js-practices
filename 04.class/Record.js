@@ -7,10 +7,27 @@ export default class Record {
     this.text = text;
   }
 
-  static createTable() {
-    const sql =
-      "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL)";
-    Record.db.run(sql);
+  static initialize() {
+    return new Promise((resolve, reject) => {
+      Record.db.run(
+        "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL)",
+        function () {
+          Record.db.all(
+            "SELECT * FROM memos ORDER BY id ASC",
+            function (err, rows) {
+              if (err) {
+                reject(err);
+              } else {
+                const records = rows.map((row) =>
+                  new Record(row.id, row.text).convert(),
+                );
+                resolve(records);
+              }
+            },
+          );
+        },
+      );
+    });
   }
 
   static async all() {
@@ -19,19 +36,6 @@ export default class Record {
       new Record(record.id, record.text).convert(),
     );
     return convertedRecords;
-  }
-
-  static select() {
-    return new Promise((resolve, reject) => {
-      const sql = "SELECT * FROM memos ORDER BY id ASC";
-      Record.db.all(sql, function (err, rows) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
   }
 
   static insert(text) {
