@@ -30,14 +30,6 @@ export default class Record {
     });
   }
 
-  static async all() {
-    const records = await Record.select();
-    const convertedRecords = records.map((record) =>
-      new Record(record.id, record.text).convert(),
-    );
-    return convertedRecords;
-  }
-
   static insert(text) {
     const sql = "INSERT INTO memos(text) VALUES(?)";
     Record.db.run(sql, text);
