@@ -31,13 +31,11 @@ export default class Record {
   }
 
   static insert(text) {
-    const sql = "INSERT INTO memos(text) VALUES(?)";
-    Record.db.run(sql, text);
+    Record.db.run("INSERT INTO memos(text) VALUES(?)", text);
   }
 
   static delete(memoId) {
-    const sql = "DELETE FROM memos WHERE id = ?";
-    Record.db.run(sql, memoId);
+    Record.db.run("DELETE FROM memos WHERE id = ?", memoId);
   }
 
   convert() {
