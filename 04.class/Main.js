@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
-import MemoApp from "./MemoApp.js";
+import Database from "./DataBase.js";
 import Memo from "./Memo.js";
-import Record from "./Record.js";
+import MemoApp from "./MemoApp.js";
 
 const main = async function () {
-  const records = await Record.initialize();
-  const memos = records.map((record) => new Memo(record));
+  const database = new Database();
+  await database.initialize();
+  const records = await database.selectAll();
+  const memos = records.map((record) => new Memo(record.id, record.text));
   const memoapp = new MemoApp(memos);
   const args = process.argv.slice(2);
 
