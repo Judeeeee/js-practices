@@ -21,14 +21,12 @@ const main = async function () {
       }
       case "-r": {
         const chosenMemo = await memoapp.choose();
-        console.log(chosenMemo.text());
+        console.log(chosenMemo.text);
         break;
       }
       case "-d": {
         const chosenMemo = await memoapp.choose();
-        const memoId = chosenMemo.memoId;
-        Record.delete(memoId);
-        break;
+        database.delete(chosenMemo.id);
       }
     }
   }

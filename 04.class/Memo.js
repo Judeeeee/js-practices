@@ -1,8 +1,7 @@
 export default class Memo {
-  constructor(convertedRecord) {
-    this.memoId = convertedRecord.memoId;
-    this.name = convertedRecord.name;
-    this.value = convertedRecord.value;
+  constructor(id, text) {
+    this.id = id;
+    this.text = text;
   }
 
   firstLine() {
