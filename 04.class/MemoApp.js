@@ -7,26 +7,25 @@ export default class MemoApp {
   }
 
   async choose() {
-    const memoList = MemoApp.memoList(this.memos);
-    const chosenRecord = await prompt(memoList);
-    const chosenMemo = this.memos.find(
-      (memo) => memo.name === chosenRecord.firstLine,
-    );
-
-    return chosenMemo;
-  }
-
-  static memoList(memos) {
-    const list = [
+    //enquireを使ってメモタイトルを表示させるために、
+    //convert()で{ name: 'memoTitle', value: 'memoID' }に変換する
+    const choices = this.memos.map((memo) => memo.convert());
+    const lines = [
       {
         type: "select",
-        name: "firstLine",
-        value: "value",
+        name: "memo",
         message: "Choose a memo you want to see:",
-        choices: memos,
+        choices: choices,
+        result(names) {
+          return this.map(names);
+        },
       },
     ];
-    return list;
+    const chosenline = await prompt(lines);
+    const chosenMemoID = Object.values(chosenline.memo)[0];
+    const chosenMemo = this.memos.find((memo) => memo.id === chosenMemoID);
+    return chosenMemo;
+  }
 
   titles() {
     for (let memo of this.memos) {
