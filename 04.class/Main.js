@@ -13,7 +13,7 @@ const main = async function () {
   const memoapp = new MemoApp(memos);
   const args = process.argv.slice(2);
 
-  if (args.length > 0) {
+  if (args && records.length) {
     switch (args[0]) {
       case "-l": {
         memoapp.firstLines();
