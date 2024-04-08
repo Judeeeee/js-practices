@@ -16,7 +16,7 @@ const main = async function () {
   if (args && records.length) {
     switch (args[0]) {
       case "-l": {
-        memoapp.firstLines();
+        memoapp.titles();
         break;
       }
       case "-r": {

@@ -6,12 +6,6 @@ export default class MemoApp {
     this.memos = memos;
   }
 
-  async firstLines() {
-    for (let memo of this.memos) {
-      console.log(memo.firstLine());
-    }
-  }
-
   async choose() {
     const memoList = MemoApp.memoList(this.memos);
     const chosenRecord = await prompt(memoList);
@@ -33,5 +27,10 @@ export default class MemoApp {
       },
     ];
     return list;
+
+  titles() {
+    for (let memo of this.memos) {
+      console.log(memo.title());
+    }
   }
 }

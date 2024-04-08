@@ -4,8 +4,8 @@ export default class Memo {
     this.text = text;
   }
 
-  firstLine() {
-    return this.name;
+  title() {
+    return this.text.match(/^[^\n]+/m)[0];
   }
 
   text() {
