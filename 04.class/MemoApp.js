@@ -6,7 +6,7 @@ export default class MemoApp {
     this.memos = memos;
   }
 
-  async choose() {
+  async choose(request_message) {
     //enquireを使ってメモタイトルを表示させるために、
     //convert()で{ name: 'memoTitle', value: 'memoID' }に変換する
     const choices = this.memos.map((memo) => memo.convert());
@@ -14,7 +14,7 @@ export default class MemoApp {
       {
         type: "select",
         name: "memo",
-        message: "Choose a memo you want to see:",
+        message: `${request_message}`,
         choices: choices,
         result(names) {
           return this.map(names);

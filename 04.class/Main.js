@@ -20,12 +20,14 @@ const main = async function () {
         break;
       }
       case "-r": {
-        const chosenMemo = await memoapp.choose();
+        const request_message = "Choose a memo you want to see";
+        const chosenMemo = await memoapp.choose(request_message);
         console.log(chosenMemo.text);
         break;
       }
       case "-d": {
-        const chosenMemo = await memoapp.choose();
+        const request_message = "Choose a memo you want to delete";
+        const chosenMemo = await memoapp.choose(request_message);
         database.delete(chosenMemo.id);
       }
     }
