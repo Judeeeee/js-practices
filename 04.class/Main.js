@@ -28,7 +28,7 @@ const main = async function () {
       case "-d": {
         const request_message = "Choose a memo you want to delete";
         const chosenMemo = await memoapp.choose(request_message);
-        database.delete(chosenMemo.id);
+        await database.delete(chosenMemo.id);
       }
     }
   }
@@ -44,8 +44,8 @@ const main = async function () {
       lines.push(line);
     });
 
-    reader.on("close", () => {
-      database.insert(lines.join("\n"));
+    reader.on("close", async () => {
+      await database.insert(lines.join("\n"));
     });
   }
 };

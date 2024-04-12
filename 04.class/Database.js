@@ -33,10 +33,26 @@ export default class Database {
   }
 
   insert(text) {
-    this.db.run("INSERT INTO memos(text) VALUES(?)", text);
+    return new Promise((resolve, reject) => {
+      this.db.run("INSERT INTO memos(text) VALUES(?)", text, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   }
 
   delete(memoID) {
-    this.db.run("DELETE FROM memos WHERE id = ?", memoID);
+    return new Promise((resolve, reject) => {
+      this.db.run("DELETE FROM memos WHERE id = ?", memoID, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   }
 }
