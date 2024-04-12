@@ -5,7 +5,7 @@ export default class Database {
     this.db = new sqlite3.Database("./memo.db");
   }
 
-  initialize() {
+  createTable() {
     return new Promise((resolve, reject) => {
       this.db.run(
         "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NOT NULL)",

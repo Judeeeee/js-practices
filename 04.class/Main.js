@@ -7,7 +7,7 @@ import MemoApp from "./MemoApp.js";
 
 const main = async function () {
   const database = new Database();
-  await database.initialize();
+  await database.createTable();
   const records = await database.selectAll();
   const memos = records.map((record) => new Memo(record.id, record.text));
   const memoapp = new MemoApp(memos);
