@@ -44,9 +44,9 @@ export default class Database {
     });
   }
 
-  delete(memoID) {
+  delete(id) {
     return new Promise((resolve, reject) => {
-      this.db.run("DELETE FROM memos WHERE id = ?", memoID, (err) => {
+      this.db.run("DELETE FROM memos WHERE id = ?", id, (err) => {
         if (err) {
           reject(err);
         } else {
