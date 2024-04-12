@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import readline from "readline";
-import Database from "./DataBase.js";
+import Database from "./Database.js";
 import Memo from "./Memo.js";
 import MemoApp from "./MemoApp.js";
 
