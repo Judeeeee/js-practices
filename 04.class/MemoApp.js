@@ -18,7 +18,7 @@ export default class MemoApp {
         type: "select",
         name: "memo",
         message: `${request_message}`,
-        choices: choices,
+        choices,
         result(names) {
           return this.map(names);
         },
