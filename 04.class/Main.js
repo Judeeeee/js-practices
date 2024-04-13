@@ -11,7 +11,21 @@ const main = async function () {
   const memoApp = new MemoApp(memos);
   const option = process.argv[2];
 
-  if (option !== "" && memos.length !== 0) {
+  if (option === undefined) {
+    const lines = [];
+    const reader = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    reader.on("line", (line) => {
+      lines.push(line);
+    });
+
+    reader.on("close", async () => {
+      await database.insert(lines.join("\n"));
+    });
+  } else if (memos.length !== 0) {
     switch (option) {
       case "-l": {
         memoApp.displayTitles();
@@ -30,22 +44,6 @@ const main = async function () {
         break;
       }
     }
-  }
-
-  if (option === undefined) {
-    const lines = [];
-    const reader = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    reader.on("line", (line) => {
-      lines.push(line);
-    });
-
-    reader.on("close", async () => {
-      await database.insert(lines.join("\n"));
-    });
   }
 };
 
