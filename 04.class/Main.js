@@ -2,18 +2,16 @@
 
 import readline from "readline";
 import Database from "./Database.js";
-import Memo from "./Memo.js";
 import MemoApp from "./MemoApp.js";
 
 const main = async function () {
   const database = new Database();
   await database.createTable();
-  const records = await database.selectAll();
-  const memos = records.map((record) => new Memo(record.id, record.text));
+  const memos = await database.selectAll();
   const memoapp = new MemoApp(memos);
   const args = process.argv.slice(2);
 
-  if (args && records.length) {
+  if (args && memos.length) {
     switch (args[0]) {
       case "-l": {
         memoapp.titles();

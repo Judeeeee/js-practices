@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+import Memo from "./Memo.js";
 
 export default class Database {
   constructor() {
@@ -26,7 +27,8 @@ export default class Database {
         if (err) {
           reject(err);
         } else {
-          resolve(rows);
+          const memos = rows.map((row) => new Memo(row.id, row.text));
+          resolve(memos);
         }
       });
     });
