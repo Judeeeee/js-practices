@@ -27,7 +27,7 @@ export default class MemoApp {
     return chosenMemo;
   }
 
-  titles() {
+  displayTitles() {
     for (let memo of this.memos) {
       console.log(memo.title());
     }

@@ -14,7 +14,7 @@ const main = async function () {
   if (option !== "" && memos.length !== 0) {
     switch (option) {
       case "-l": {
-        memoApp.titles();
+        memoApp.displayTitles();
         break;
       }
       case "-r": {
