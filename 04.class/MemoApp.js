@@ -31,7 +31,7 @@ export default class MemoApp {
   }
 
   displayTitles() {
-    for (let memo of this.memos) {
+    for (const memo of this.memos) {
       console.log(memo.title);
     }
   }
