@@ -13,7 +13,7 @@ export default class MemoApp {
       name: memo.title,
       value: memo.id,
     }));
-    const lines = [
+    const question = [
       {
         type: "select",
         name: "memo",
@@ -24,7 +24,7 @@ export default class MemoApp {
         },
       },
     ];
-    const chosenline = await prompt(lines);
+    const chosenline = await prompt(question);
     const chosenMemoID = Object.values(chosenline.memo)[0];
     const chosenMemo = this.memos.find((memo) => memo.id === chosenMemoID);
     return chosenMemo;
