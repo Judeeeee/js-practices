@@ -8,24 +8,24 @@ const main = async function () {
   const database = new Database();
   await database.createTable();
   const memos = await database.selectAll();
-  const memoapp = new MemoApp(memos);
+  const memoApp = new MemoApp(memos);
   const args = process.argv.slice(2);
 
   if (args && memos.length) {
     switch (args[0]) {
       case "-l": {
-        memoapp.titles();
+        memoApp.titles();
         break;
       }
       case "-r": {
         const request_message = "Choose a memo you want to see";
-        const chosenMemo = await memoapp.choose(request_message);
+        const chosenMemo = await memoApp.choose(request_message);
         console.log(chosenMemo.text);
         break;
       }
       case "-d": {
         const request_message = "Choose a memo you want to delete";
-        const chosenMemo = await memoapp.choose(request_message);
+        const chosenMemo = await memoApp.choose(request_message);
         await database.delete(chosenMemo.id);
       }
     }
