@@ -9,10 +9,10 @@ const main = async function () {
   await database.createTable();
   const memos = await database.selectAll();
   const memoApp = new MemoApp(memos);
-  const args = process.argv.slice(2);
+  const option = process.argv[2];
 
-  if (args && memos.length) {
-    switch (args[0]) {
+  if (option !== "" && memos.length !== 0) {
+    switch (option) {
       case "-l": {
         memoApp.titles();
         break;
@@ -31,7 +31,7 @@ const main = async function () {
     }
   }
 
-  if (args.length == 0) {
+  if (option === undefined) {
     const lines = [];
     const reader = readline.createInterface({
       input: process.stdin,
