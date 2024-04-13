@@ -27,6 +27,7 @@ const main = async function () {
         const request_message = "Choose a memo you want to delete";
         const chosenMemo = await memoApp.choose(request_message);
         await database.delete(chosenMemo.id);
+        break;
       }
     }
   }
