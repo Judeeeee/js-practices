@@ -4,10 +4,4 @@ export default class Memo {
     this.text = text;
     this.title = this.text.split("\n")[0];
   }
-
-  // enquireを使ってメモタイトルを表示させるために、
-  // convert()で{ name: 'memoTitle', value: 'memoID' }に変換する
-  convert() {
-    return { name: this.title, value: this.id };
-  }
 }

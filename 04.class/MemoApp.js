@@ -9,7 +9,10 @@ export default class MemoApp {
   async choose(request_message) {
     // enquireを使ってメモタイトルを表示させるために、
     // convert()で{ name: 'memoTitle', value: 'memoID' }に変換する
-    const choices = this.memos.map((memo) => memo.convert());
+    const choices = this.memos.map((memo) => ({
+      name: memo.title,
+      value: memo.id,
+    }));
     const lines = [
       {
         type: "select",
