@@ -29,7 +29,7 @@ export default class MemoApp {
 
   displayTitles() {
     for (let memo of this.memos) {
-      console.log(memo.title());
+      console.log(memo.title);
     }
   }
 }
