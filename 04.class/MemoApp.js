@@ -8,10 +8,10 @@ export default class MemoApp {
 
   async choose(request_message) {
     // enquireを使ってメモタイトルを表示させるために、
-    // convert()で{ name: 'memoTitle', value: 'memoID' }に変換する
+    // convert()で{ name: 'memoTitle', id: 'memoID' }に変換する
     const choices = this.memos.map((memo) => ({
       name: memo.title,
-      value: memo.id,
+      id: memo.id,
     }));
     const question = [
       {
@@ -19,14 +19,13 @@ export default class MemoApp {
         name: "memo",
         message: `${request_message}`,
         choices,
-        result(names) {
-          return this.map(names);
+        result() {
+          return this.focused;
         },
       },
     ];
-    const chosenline = await prompt(question);
-    const chosenMemoID = Object.values(chosenline.memo)[0];
-    const chosenMemo = this.memos.find((memo) => memo.id === chosenMemoID);
+    const answer = await prompt(question);
+    const chosenMemo = this.memos.find((memo) => memo.id === answer.memo.id);
     return chosenMemo;
   }
 
