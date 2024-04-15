@@ -28,7 +28,10 @@ const main = async function () {
   } else if (memos.length !== 0) {
     switch (option) {
       case "-l": {
-        memoApp.displayTitles();
+        const titles = memoApp.createTitles();
+        for (const title of titles) {
+          console.log(title);
+        }
         break;
       }
       case "-r": {

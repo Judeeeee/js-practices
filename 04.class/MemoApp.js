@@ -29,9 +29,7 @@ export default class MemoApp {
     return chosenMemo;
   }
 
-  displayTitles() {
-    for (const memo of this.memos) {
-      console.log(memo.title);
-    }
+  createTitles() {
+    return this.memos.map((memo) => memo.title);
   }
 }
