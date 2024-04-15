@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 import Memo from "./Memo.js";
 
-export default class Database {
+export default class MemosDatabase {
   constructor() {
     this.db = new sqlite3.Database("./memo.db");
   }

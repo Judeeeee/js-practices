@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 import readline from "readline";
-import Database from "./Database.js";
+import MemosDatabase from "./MemosDatabase.js";
 import MemoApp from "./MemoApp.js";
 
 const main = async function () {
-  const database = new Database();
-  await database.createTable();
-  const memos = await database.selectAll();
+  const memosDatabase = new MemosDatabase();
+  await memosDatabase.createTable();
+  const memos = await memosDatabase.selectAll();
   const memoApp = new MemoApp(memos);
   const option = process.argv[2];
 
@@ -23,7 +23,7 @@ const main = async function () {
     });
 
     reader.on("close", async () => {
-      await database.insert(lines.join("\n"));
+      await memosDatabase.insert(lines.join("\n"));
     });
   } else if (memos.length !== 0) {
     switch (option) {
@@ -43,7 +43,7 @@ const main = async function () {
       case "-d": {
         const request_message = "Choose a memo you want to delete";
         const chosenMemo = await memoApp.choose(request_message);
-        await database.delete(chosenMemo.id);
+        await memosDatabase.delete(chosenMemo.id);
         break;
       }
     }
