@@ -36,14 +36,22 @@ const main = async function () {
       }
       case "-r": {
         const request_message = "Choose a memo you want to see";
-        const chosenMemo = await memoApp.choose(request_message);
-        console.log(chosenMemo.text);
+        try {
+          const chosenMemo = await memoApp.choose(request_message);
+          console.log(chosenMemo.text);
+        } catch {
+          return;
+        }
         break;
       }
       case "-d": {
         const request_message = "Choose a memo you want to delete";
-        const chosenMemo = await memoApp.choose(request_message);
-        await memosDatabase.delete(chosenMemo.id);
+        try {
+          const chosenMemo = await memoApp.choose(request_message);
+          await memosDatabase.delete(chosenMemo.id);
+        } catch {
+          return;
+        }
         break;
       }
     }
