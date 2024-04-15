@@ -1,5 +1,4 @@
-import pkg from "enquirer";
-const { prompt } = pkg;
+import enquirer from "enquirer";
 
 export default class MemoApp {
   constructor(memos) {
@@ -24,7 +23,7 @@ export default class MemoApp {
         },
       },
     ];
-    const answer = await prompt(question);
+    const answer = await enquirer.prompt(question);
     const chosenMemo = this.memos.find((memo) => memo.id === answer.memo.id);
     return chosenMemo;
   }
