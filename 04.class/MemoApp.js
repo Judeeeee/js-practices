@@ -5,7 +5,7 @@ export default class MemoApp {
     this.memos = memos;
   }
 
-  async choose(request_message) {
+  async choose(requestMessage) {
     const choices = this.memos.map((memo) => ({
       name: memo.title,
       id: memo.id,
@@ -14,7 +14,7 @@ export default class MemoApp {
       {
         type: "select",
         name: "memo",
-        message: `${request_message}`,
+        message: `${requestMessage}`,
         choices,
         result() {
           return this.focused;

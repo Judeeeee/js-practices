@@ -18,15 +18,15 @@ const main = async function () {
       console.log(title);
     }
   } else if (option === "-r") {
-    const request_message = "Choose a memo you want to see";
+    const requestMessage = "Choose a memo you want to see";
     if (memos.length !== 0) {
-      const chosenMemo = await memoApp.choose(request_message);
+      const chosenMemo = await memoApp.choose(requestMessage);
       console.log(chosenMemo.text);
     }
   } else if (option === "-d") {
-    const request_message = "Choose a memo you want to delete";
+    const requestMessage = "Choose a memo you want to delete";
     if (memos.length !== 0) {
-      const chosenMemo = await memoApp.choose(request_message);
+      const chosenMemo = await memoApp.choose(requestMessage);
       await memosDatabase.delete(chosenMemo.id);
     }
   } else if (option === undefined) {
