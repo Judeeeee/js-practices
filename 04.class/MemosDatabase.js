@@ -23,7 +23,7 @@ export default class MemosDatabase {
 
   selectAll() {
     return new Promise((resolve, reject) => {
-      this.db.all("SELECT * FROM memos ORDER BY id ASC", function (err, rows) {
+      this.db.all("SELECT * FROM memos ORDER BY id ASC", (err, rows) => {
         if (err) {
           reject(err);
         } else {
