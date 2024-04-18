@@ -20,22 +20,14 @@ const main = async function () {
   } else if (option === "-r") {
     const request_message = "Choose a memo you want to see";
     if (memos.length !== 0) {
-      try {
-        const chosenMemo = await memoApp.choose(request_message);
-        console.log(chosenMemo.text);
-      } catch {
-        return;
-      }
+      const chosenMemo = await memoApp.choose(request_message);
+      console.log(chosenMemo.text);
     }
   } else if (option === "-d") {
     const request_message = "Choose a memo you want to delete";
     if (memos.length !== 0) {
-      try {
-        const chosenMemo = await memoApp.choose(request_message);
-        await memosDatabase.delete(chosenMemo.id);
-      } catch {
-        return;
-      }
+      const chosenMemo = await memoApp.choose(request_message);
+      await memosDatabase.delete(chosenMemo.id);
     }
   } else if (option === undefined) {
     const lines = [];
