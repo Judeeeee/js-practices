@@ -6,10 +6,7 @@ export default class MemoApp {
   }
 
   async choose(requestMessage) {
-    const choices = this.memos.map((memo) => ({
-      name: memo.title,
-      id: memo.id,
-    }));
+    const choices = this.memos;
     const question = [
       {
         type: "select",
@@ -22,7 +19,6 @@ export default class MemoApp {
       },
     ];
     const answer = await enquirer.prompt(question);
-    const chosenMemo = this.memos.find((memo) => memo.id === answer.memo.id);
-    return chosenMemo;
+    return answer.memo;
   }
 }
