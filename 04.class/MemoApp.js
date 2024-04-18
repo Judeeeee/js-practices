@@ -27,8 +27,4 @@ export default class MemoApp {
     const chosenMemo = this.memos.find((memo) => memo.id === answer.memo.id);
     return chosenMemo;
   }
-
-  createTitles() {
-    return this.memos.map((memo) => memo.title);
-  }
 }

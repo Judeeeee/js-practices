@@ -12,7 +12,8 @@ const main = async function () {
   const option = process.argv[2];
 
   if (option === "-l") {
-    const titles = memoApp.createTitles();
+    const titles = memos.map((memo) => memo.title);
+
     for (const title of titles) {
       console.log(title);
     }
