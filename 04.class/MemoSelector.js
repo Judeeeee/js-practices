@@ -1,6 +1,6 @@
 import enquirer from "enquirer";
 
-export default class MemoApp {
+export default class MemoSelector {
   constructor(memos) {
     this.memos = memos;
   }

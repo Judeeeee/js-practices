@@ -2,13 +2,13 @@
 
 import readline from "readline";
 import MemosDatabase from "./MemosDatabase.js";
-import MemoApp from "./MemoApp.js";
+import MemoSelector from "./MemoSelector.js";
 
 const main = async function () {
   const memosDatabase = new MemosDatabase();
   await memosDatabase.createTable();
   const memos = await memosDatabase.selectAll();
-  const memoApp = new MemoApp(memos);
+  const memoSelector = new MemoSelector(memos);
   const option = process.argv[2];
 
   if (option === "-l") {
@@ -18,13 +18,13 @@ const main = async function () {
   } else if (option === "-r") {
     const requestMessage = "Choose a memo you want to see";
     if (memos.length !== 0) {
-      const chosenMemo = await memoApp.choose(requestMessage);
+      const chosenMemo = await memoSelector.choose(requestMessage);
       console.log(chosenMemo.text);
     }
   } else if (option === "-d") {
     const requestMessage = "Choose a memo you want to delete";
     if (memos.length !== 0) {
-      const chosenMemo = await memoApp.choose(requestMessage);
+      const chosenMemo = await memoSelector.choose(requestMessage);
       await memosDatabase.delete(chosenMemo.id);
     }
   } else if (option === undefined) {
