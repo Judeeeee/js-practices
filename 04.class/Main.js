@@ -12,10 +12,8 @@ const main = async function () {
   const option = process.argv[2];
 
   if (option === "-l") {
-    const titles = memos.map((memo) => memo.title);
-
-    for (const title of titles) {
-      console.log(title);
+    for (const memo of memos) {
+      console.log(memo.title);
     }
   } else if (option === "-r") {
     const requestMessage = "Choose a memo you want to see";
