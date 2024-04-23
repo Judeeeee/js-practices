@@ -18,7 +18,11 @@ export default class MemoSelector {
         },
       },
     ];
-    const answer = await enquirer.prompt(question);
-    return answer.memo;
+    try {
+      const answer = await enquirer.prompt(question);
+      return answer.memo;
+    } catch (error) {
+      process.exit(0);
+    }
   }
 }
