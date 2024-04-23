@@ -39,6 +39,9 @@ const main = async function () {
     });
 
     reader.on("close", async () => {
+      if (lines.includes("") || lines.length === 0) {
+        return;
+      }
       await memosDatabase.insert(lines.join("\n"));
     });
   }
