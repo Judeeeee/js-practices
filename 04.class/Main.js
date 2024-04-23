@@ -34,6 +34,10 @@ const main = async function () {
       output: process.stdout,
     });
 
+    reader.on("SIGINT", () => {
+      process.exit(0);
+    });
+
     reader.on("line", (line) => {
       lines.push(line);
     });
