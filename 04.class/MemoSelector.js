@@ -6,13 +6,12 @@ export default class MemoSelector {
   }
 
   async choose(requestMessage) {
-    const choices = this.memos;
     const question = [
       {
         type: "select",
         name: "memo",
         message: `${requestMessage}`,
-        choices,
+        choices: this.memos,
         result() {
           return this.focused;
         },
