@@ -59,7 +59,7 @@ const main = async function () {
     });
 
     reader.on("close", async () => {
-      if (lines.includes("") || lines.length === 0) {
+      if (lines.every((line) => line === "")) {
         return;
       }
       await memosDatabase.insert(lines.join("\n"));
