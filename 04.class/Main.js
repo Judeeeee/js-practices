@@ -23,7 +23,7 @@ const main = async function () {
         console.log(chosenMemo.text);
       } catch (error) {
         if (error === "") {
-          process.exit(0);
+          process.exit(1);
         } else {
           throw new Error("An unexpected error has occurred");
         }
@@ -37,7 +37,7 @@ const main = async function () {
         await memosDatabase.delete(chosenMemo.id);
       } catch (error) {
         if (error === "") {
-          process.exit(0);
+          process.exit(1);
         } else {
           throw new Error("An unexpected error has occurred");
         }
