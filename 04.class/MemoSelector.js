@@ -10,7 +10,7 @@ export default class MemoSelector {
       {
         type: "select",
         name: "memo",
-        message: `${requestMessage}`,
+        message: requestMessage,
         choices: this.memos,
         result() {
           return this.focused;
