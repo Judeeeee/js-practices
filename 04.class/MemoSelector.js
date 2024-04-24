@@ -17,15 +17,7 @@ export default class MemoSelector {
         },
       },
     ];
-    try {
-      const answer = await enquirer.prompt(question);
-      return answer.memo;
-    } catch (error) {
-      if (error === "") {
-        process.exit(0);
-      } else {
-        throw new Error("An unexpected error has occurred");
-      }
-    }
+    const answer = await enquirer.prompt(question);
+    return answer.memo;
   }
 }

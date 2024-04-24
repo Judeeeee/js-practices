@@ -18,14 +18,30 @@ const main = async function () {
   } else if (option === "-r") {
     const requestMessage = "Choose a memo you want to see";
     if (memos.length !== 0) {
-      const chosenMemo = await memoSelector.choose(requestMessage);
-      console.log(chosenMemo.text);
+      try {
+        const chosenMemo = await memoSelector.choose(requestMessage);
+        console.log(chosenMemo.text);
+      } catch (error) {
+        if (error === "") {
+          process.exit(0);
+        } else {
+          throw new Error("An unexpected error has occurred");
+        }
+      }
     }
   } else if (option === "-d") {
     const requestMessage = "Choose a memo you want to delete";
     if (memos.length !== 0) {
-      const chosenMemo = await memoSelector.choose(requestMessage);
-      await memosDatabase.delete(chosenMemo.id);
+      try {
+        const chosenMemo = await memoSelector.choose(requestMessage);
+        await memosDatabase.delete(chosenMemo.id);
+      } catch (error) {
+        if (error === "") {
+          process.exit(0);
+        } else {
+          throw new Error("An unexpected error has occurred");
+        }
+      }
     }
   } else if (option === undefined) {
     const lines = [];
