@@ -22,7 +22,11 @@ export default class MemoSelector {
       const answer = await enquirer.prompt(question);
       return answer.memo;
     } catch (error) {
-      process.exit(0);
+      if (error === "") {
+        process.exit(0);
+      } else {
+        throw new Error("An unexpected error has occurred");
+      }
     }
   }
 }
