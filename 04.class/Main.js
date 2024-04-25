@@ -51,7 +51,7 @@ const main = async function () {
     });
 
     reader.on("SIGINT", () => {
-      process.exit(0);
+      process.exit(1);
     });
 
     reader.on("line", (line) => {
