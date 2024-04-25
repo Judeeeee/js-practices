@@ -25,7 +25,7 @@ const main = async function () {
         if (error === "") {
           process.exit(1);
         } else {
-          throw new Error("An unexpected error has occurred");
+          throw error;
         }
       }
     }
@@ -39,7 +39,7 @@ const main = async function () {
         if (error === "") {
           process.exit(1);
         } else {
-          throw new Error("An unexpected error has occurred");
+          throw error;
         }
       }
     }
