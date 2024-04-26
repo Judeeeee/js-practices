@@ -3,6 +3,10 @@
     "fix": "prettier --write . && eslint --fix .",
     "lint": "prettier --check . && eslint ."
   },
+  "dependencies": {
+    "enquirer": "^2.4.1",
+    "sqlite3": "^5.1.7"
+  },
   "devDependencies": {
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
